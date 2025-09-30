@@ -1,0 +1,185 @@
+/* frontend/src/index.css */
+
+:root {
+  --color-background: #f0f2f5;
+  --color-text-primary: #1c1e21;
+  --color-text-secondary: #65676b;
+  --color-card-background: #ffffff;
+  --color-header-background: #f5f6f7;
+  --color-border: #e0e0e0;
+  --color-hover: #ebebeb;
+}
+/* Dark theme - CORRECTED */
+/* frontend/src/index.css */
+
+/* Dark theme - CORRECTED HIGH-CONTRAST PALETTE */
+.dark {
+  --color-background: #121212;          /* True black for the page background */
+  --color-text-primary: #e4e6eb;        /* **THE FIX**: A bright, almost-white text color */
+  --color-text-secondary: #b0b3b8;      /* A bright gray for secondary text (like headers) */
+  --color-card-background: #1e1e1e;      /* A distinct off-black for cards */
+  --color-header-background: #333333;    /* A dark gray for table headers */
+  --color-border: #3a3a3a;              /* A subtle border color */
+  --color-hover: #3a3b3c;               /* A slightly lighter color for hover effects */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 24px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.app-container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 0 2rem 0;
+  font-weight: 700;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column by default for mobile */
+  gap: 24px;
+}
+
+/* Apply two-column layout on screens wider than 1024px */
+@media (min-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 2.5fr 1fr; /* Give more space to standings */
+    }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.standings-container, .info-card {
+  background-color: var(--color-card-background);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  padding: 24px;
+}
+
+.info-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+.list-container { padding-left: 0; margin: 0; list-style: none; }
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.list-item:last-child { border-bottom: none; }
+.match-item { font-size: 0.95em; }
+.match-date { font-size: 0.85em; color: var(--color-text-secondary); text-align: right; }
+.match-score { font-weight: 700; padding: 0 16px; font-size: 1.1em; }
+ol.list-container { padding-left: 20px; }
+ol .list-item { padding-left: 10px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th, td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap; /* Prevent text wrapping in cells */
+}
+tbody tr:last-child td { border-bottom: none; }
+
+thead th {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.5px;
+}
+tbody tr:hover { background-color: var(--color-hover); }
+
+td:nth-child(2) { text-align: left; font-weight: 600; } /* Team name */
+td:last-child { font-weight: 700; } /* Points */
+
+/* Responsive table: hide captain on smaller screens */
+.captain-name {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    th:nth-child(3), td:nth-child(3) { /* Hide the 3rd column (Captain) */
+        display: none;
+    }
+}
+
+.theme-toggle-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card-background);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.theme-toggle-button:hover { background-color: var(--color-hover); }
+
+
+/* frontend/src/index.css (add to the bottom) */
+
+/* FORM STYLES */
+.form-container {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-box {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+.form-win {
+  background-color: #28a745; /* Green */
+}
+
+.form-draw {
+  background-color: #ffc107; /* Yellow */
+  color: #1c1e21; /* Darker text for yellow background */
+}
+
+.form-loss {
+  background-color: #dc3545; /* Red */
+}
