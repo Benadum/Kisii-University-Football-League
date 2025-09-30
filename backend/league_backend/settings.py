@@ -128,16 +128,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # league_backend/settings.py (at the bottom of the file)
 # league_backend/settings.py
 
-ALLOWED_HOSTS = []
+A# settings.py
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# ... (ALLOWED_HOSTS setting) ...
+
+# DELETE 'CORS_ALLOW_ALL_ORIGINS = True' and REPLACE it with this list:
+CORS_ALLOWED_ORIGINS = [
+    "https://kisii-university-football-league-updates.onrender.com",
+]
 # settings.py (at the bottom)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' 
-
-CORS_ALLOWED_ORIGINS = [
-     "https://kisii-university-football-league-updates.onrender.com",
-
-]
