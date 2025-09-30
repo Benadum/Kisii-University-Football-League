@@ -136,3 +136,8 @@ if RENDER_EXTERNAL_HOSTNAME:
 # settings.py (at the bottom)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' 
+
+CORS_ALLOWED_ORIGINS = [
+     "https://kisii-university-football-league-updates.onrender.com",
+
+]
