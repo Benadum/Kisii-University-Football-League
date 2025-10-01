@@ -11,10 +11,6 @@ const StandingsTable = ({ standings }) => {
     );
   }
 
-  // NOTE: The baseUrl is no longer needed for the image, 
-  // but it is still needed for the TeamForm component's internal API call.
-  // We can handle that inside the TeamForm component itself.
-
   return (
     <div className="standings-container">
       <table>
@@ -43,8 +39,6 @@ const StandingsTable = ({ standings }) => {
               {/* Data Cell for the Logo */}
               <td className="logo-cell">
                 {team.logo ? (
-                  // THE FIX IS HERE: Use team.logo directly as the src.
-                  // The API will now provide the full URL from Cloudinary.
                   <img src={team.logo} alt={team.name} className="team-logo" />
                 ) : (
                   <div className="team-logo-placeholder"></div>
