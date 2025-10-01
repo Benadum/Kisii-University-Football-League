@@ -128,7 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # league_backend/settings.py (at the bottom of the file)
 # league_backend/settings.py
 
-A# settings.py
+
 
 # ... (ALLOWED_HOSTS setting) ...
 
