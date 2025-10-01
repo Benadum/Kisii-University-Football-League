@@ -11,13 +11,16 @@ const StandingsTable = ({ standings }) => {
     );
   }
 
+  // Use the production API URL or fallback to local for development
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+
   return (
     <div className="standings-container">
       <table>
         <thead>
           <tr>
             <th>#</th>
-            <th className="logo-header"></th>
+            <th className="logo-header"></th> {/* Header for Logo */}
             <th>Team</th>
             <th>Captain</th>
             <th>MP</th>
@@ -34,19 +37,21 @@ const StandingsTable = ({ standings }) => {
         <tbody>
           {standings.map((team, index) => (
             <tr key={team.id}>
-            <td className="logo-cell">
-        {team.logo ? (
-            <img 
-                // THE FIX IS HERE: Use the environment variable
-                src={`${import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'}${team.logo}`} 
-                alt={team.name} 
-                className="team-logo" 
-            />
-        ) : (
-            <div className="team-logo-placeholder"></div>
-        )}
-    </td>
+              <td>{index + 1}</td>
+              
+              {/* Data Cell for the Logo */}
+              <td className="logo-cell">
+                {team.logo ? (
+                  <img src={`${baseUrl}${team.logo}`} alt={team.name} className="team-logo" />
+                ) : (
+                  <div className="team-logo-placeholder"></div>
+                )}
+              </td>
+              
+              {/* Data Cell for the Team Name */}
               <td className="team-name-cell">{team.name}</td>
+
+              {/* All subsequent data cells */}
               <td className="captain-name">
                 {team.captain ? `${team.captain.first_name} ${team.captain.last_name}` : 'N/A'}
               </td>
