@@ -11,8 +11,9 @@ const StandingsTable = ({ standings }) => {
     );
   }
 
-  // Use the production API URL or fallback to local for development
-  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+  // NOTE: The baseUrl is no longer needed for the image, 
+  // but it is still needed for the TeamForm component's internal API call.
+  // We can handle that inside the TeamForm component itself.
 
   return (
     <div className="standings-container">
@@ -42,7 +43,9 @@ const StandingsTable = ({ standings }) => {
               {/* Data Cell for the Logo */}
               <td className="logo-cell">
                 {team.logo ? (
-                  <img src={`${baseUrl}${team.logo}`} alt={team.name} className="team-logo" />
+                  // THE FIX IS HERE: Use team.logo directly as the src.
+                  // The API will now provide the full URL from Cloudinary.
+                  <img src={team.logo} alt={team.name} className="team-logo" />
                 ) : (
                   <div className="team-logo-placeholder"></div>
                 )}
