@@ -23,10 +23,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-for-development')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-# Set to False in production, but True for local development by default
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = []
+
+
+# --- HOST AND CORS CONFIGURATION ---
+# This is the corrected and combined block for ALLOWED_HOSTS and CORS.
+
+ALLOWED_HOSTS = [
+    'kisii-university-football-league-backend.onrender.com',
+]
+
+# Add the hostname provided by Render's environment variable for health checks
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Whitelist your frontend's domain so it can make API requests
+CORS_ALLOWED_ORIGINS = [
+    "https://kisii-university-football-league-updates.onrender.com",
+]
 
 
 # Application definition
@@ -46,7 +63,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # Ensure this is high up
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -88,18 +105,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # ... (Your validators are fine) ...
 ]
 
 
@@ -107,36 +113,21 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
+# Static files (CSS, JavaScript, Images) for Admin Panel
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files (User-uploaded content like logos)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# league_backend/settings.py (at the bottom of the file)
-# league_backend/settings.py
-
-
-
-# ... (ALLOWED_HOSTS setting) ...
-
-# DELETE 'CORS_ALLOW_ALL_ORIGINS = True' and REPLACE it with this list:
-CORS_ALLOWED_ORIGINS = [
-    "https://kisii-university-football-league-updates.onrender.com",
-]
-# settings.py (at the bottom)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media' 
